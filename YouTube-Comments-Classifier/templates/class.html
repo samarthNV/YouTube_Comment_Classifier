@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Example</title>
+    <style>
+        .inner_container{
+            text-align: center;
+        }
+        .big-button {
+            display: flexbox;
+            width: 200px;
+            height: 100px;
+            margin: 20px;
+            font-size: 24px;
+            text-align: center;
+            line-height: 100px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .big-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body style="background-color: rgba(191, 231, 255, 0.941);">
+    <h1 style="text-align: center; margin-top: 8%;">Which type of comments you want to see?</h1>
+    <div class="container">
+    <form method="POST" action="/all" class="inner_container">
+        <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="All">All</button>
+        <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="Relevant">Relevant</button>
+        <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="Spam">Spam</button>
+        <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="Appreciation">Appreciation</button>
+        <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="Grievances">Grievances</button>
+    </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Comments Classifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        #input-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        #youtube-link {
+            flex: 1;
+            padding: 10px;
+        }
+
+        #fetch-button {
+            padding: 10px 20px;
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #comments-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #comments-table th, #comments-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #filter-button {
+            float: right;
+        }
+
+        #category-filter {
+            display: none;
+        }
+    </style>
+</head>
+<body style="background-color: rgba(191, 231, 255, 0.941);">
+    <div id="container" style="background-color: rgb(84, 206, 231); padding: 15px;">
+        <br>
+        <h1 style="text-align: center">YouTube Comments Classifier</h1>
+        <br>
+        <table id="comments-table">
+            <thead>
+                <tr>
+                    <th style="background-color: rgb(171, 255, 255);"> {{type }} Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Comments will be displayed here -->
+                <tr>
+
+                {% for item in comments %}
+                    <tr><td style="background-color: rgb(255, 255, 255);">{{ item }}</td></tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+        // JavaScript code for showing/hiding the category filter dropdown
+        document.getElementById("filter-button").addEventListener("click", function () {
+            var categoryFilter = document.getElementById("category-filter");
+            if (categoryFilter.style.display === "none") {
+                categoryFilter.style.display = "block";
+            } else {
+                categoryFilter.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Comments Classifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        #input-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        #youtube-link {
+            flex: 1;
+            padding: 10px;
+        }
+
+        #submit {
+            padding: 10px 20px;
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #comments-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #comments-table th, #comments-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #filter-button {
+            float: right;
+        }
+
+        #category-filter {
+            display: none;
+        }
+    </style>
+</head>
+<body style="background-color: rgba(191, 231, 255, 0.941);">
+    <div class="card" style="background-color: rgb(57, 195, 223); margin-top: 5%; height: 20%; width: 80%; margin-left: 10%; margin-top: 15%;">
+
+    <div id="container">
+        <br>
+        <h1 style="text-align: center">YouTube Comments Classifier</h1>
+        <br>
+        <form id="input-container" method="POST" action="/process_link">
+            <input type="text" id="youtube-link" name="youtube_link" placeholder="Enter the ID of youtube video" style="margin-bottom: 5%;">
+            <button id="submit" style="margin-bottom: 5%;">Fetch Comments</button>
+        </form>
+    </div>
+    </div>
+</body>
+</html>
