@@ -2,43 +2,16 @@
 <html>
 
 <head>
-  <title>Button Example</title>
-  <style>
-    .inner_container {
-      text-align: center;
-    }
-
-    .outer-container {
-      display: flex;
-      justify-content: space-around;
-    }
-
-    .visual {
-      display: flexbox;
-      width: 40%;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .big-button {
-      display: flexbox;
-      width: 200px;
-      height: 100px;
-      margin: 20px;
-      font-size: 24px;
-      text-align: center;
-      line-height: 100px;
-      background-color: #3498db;
-      color: #fff;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    .big-button:hover {
-      background-color: #2980b9;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/9f84562e7d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://assets.website-files.com/62aee78456e4207786ac4d18/62b0fad1a8cf6a4c26b3cb5e_Faivcon%2032.svg"
+    rel="shortcut icon" type="image/x-icon" />
+  <title>Classifier</title>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
@@ -79,8 +52,14 @@
 </head>
 
 <body style="background-color: rgba(191, 231, 255, 0.941);">
-  <h1 style="text-align: center; margin-top: 6%;">Which type of comments you want to see?</h1>
-  <div class="container">
+  <nav>
+    <a href="" class="title-logo"></a>
+    <div class="login-nav-content">
+      <a href="{{url_for('logout')}}"><button class="nav-btn">Logout</button></a>
+    </div>
+  </nav>
+  <h1 style="text-align: center; margin-top: 3%;">Which type of comments you want to see?</h1>
+  <!-- <div class="container"> -->
     <form method="POST" action="/all" class="inner_container">
       <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="All">All</button>
       <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
@@ -92,8 +71,9 @@
       <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
         value="Grievance">Grievance</button>
     </form>
-  </div>
-  <h1 style="text-align: center; margin-top: 4%; font-weight: 400; font-size:x-large;">Total number of comments = {{cnt_array[0]}}</h1>
+  <!-- </div> -->
+  <h1 style="text-align: center; margin-top: 2%; font-weight: 400; font-size:x-large;">Total number of comments =
+    {{cnt_array[0]}}</h1>
   <div class="outer-container">
     <div id="piechart1" class="visual"></div>
     <div id="piechart2" class="visual"></div>

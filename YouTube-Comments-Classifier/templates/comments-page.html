@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>YouTube Comments Classifier</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9f84562e7d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://assets.website-files.com/62aee78456e4207786ac4d18/62b0fad1a8cf6a4c26b3cb5e_Faivcon%2032.svg"
+        rel="shortcut icon" type="image/x-icon" />
+    <title>Comments</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
         }
 
         #container {
@@ -36,7 +46,8 @@
             border-collapse: collapse;
         }
 
-        #comments-table th, #comments-table td {
+        #comments-table th,
+        #comments-table td {
             border: 1px solid #ccc;
             padding: 10px;
         }
@@ -50,8 +61,15 @@
         }
     </style>
 </head>
+
 <body style="background-color: rgba(191, 231, 255, 0.941);">
-    <div id="container" style="background-color: rgb(84, 206, 231); padding: 15px;">
+    <nav>
+        <a href="" class="title-logo"></a>
+        <div class="login-nav-content">
+            <a href="{{url_for('logout')}}"><button class="nav-btn">Logout</button></a>
+        </div>
+    </nav>
+    <div id="container" style="background-color: rgb(84, 206, 231); padding: 20px; margin-top: 20px;">
         <br>
         <h1 style="text-align: center">YouTube Comments Classifier</h1>
         <br>
@@ -65,8 +83,10 @@
                 <!-- Comments will be displayed here -->
                 <tr>
 
-                {% for item in comments %}
-                    <tr><td style="background-color: rgb(255, 255, 255);">{{ item }}</td></tr>
+                    {% for item in comments %}
+                <tr>
+                    <td style="background-color: rgb(255, 255, 255);">{{ item }}</td>
+                </tr>
                 {% endfor %}
 
             </tbody>
@@ -86,4 +106,5 @@
         });
     </script>
 </body>
+
 </html>

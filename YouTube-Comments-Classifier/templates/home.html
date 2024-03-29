@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9f84562e7d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://assets.website-files.com/62aee78456e4207786ac4d18/62b0fad1a8cf6a4c26b3cb5e_Faivcon%2032.svg"
+        rel="shortcut icon" type="image/x-icon" />
+    <title>Home</title>
+    <style>
+        body {
+            background-color: #C2E9FE;
+        }
+    </style>
+</head>
+
+<body>
+    <nav style="position: absolute;">
+        <a href="" class="title-logo"></a>
+        <div class="nav-content">
+            <div class="login-nav-content">
+                <a href="{{ url_for('login') }}"><button class="nav-btn">Login</button></a>
+            </div>
+            <div class="login-nav-content">
+                <a href="{{ url_for('register') }}"><button class="nav-btn">Register</button></a>
+            </div>
+        </div>
+
+    </nav>
+    <div class="home-container">
+        <div class="centered">
+            <p class="home-text">YouTube Comment Classifier</p>
+        </div>
+    </div>
+</body>
+
+</html>
