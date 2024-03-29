@@ -1,41 +1,103 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Button Example</title>
-    <style>
-        .inner_container{
-            text-align: center;
-        }
-        .big-button {
-            display: flexbox;
-            width: 200px;
-            height: 100px;
-            margin: 20px;
-            font-size: 24px;
-            text-align: center;
-            line-height: 100px;
-            background-color: #3498db;
-            color: #fff;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-        }
 
-        .big-button:hover {
-            background-color: #2980b9;
-        }
-    </style>
+<head>
+  <title>Button Example</title>
+  <style>
+    .inner_container {
+      text-align: center;
+    }
+
+    .outer-container {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .visual {
+      display: flexbox;
+      width: 40%;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .big-button {
+      display: flexbox;
+      width: 200px;
+      height: 100px;
+      margin: 20px;
+      font-size: 24px;
+      text-align: center;
+      line-height: 100px;
+      background-color: #3498db;
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .big-button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var cnt1 = parseInt('{{ cnt_array[1] }}');
+      var cnt2 = parseInt('{{ cnt_array[2] }}');
+      var cnt3 = parseInt('{{ cnt_array[3] }}');
+      var cnt4 = parseInt('{{ cnt_array[4] }}');
+
+      var data1 = google.visualization.arrayToDataTable([
+        ['Type', 'No. of Comments'],
+        ['Relevant', cnt1],
+        ['Spam', cnt2]
+      ]);
+      var data2 = google.visualization.arrayToDataTable([
+        ['Type', 'No. of Comments'],
+        ['Appreciation', cnt3],
+        ['Grievance', cnt4]
+      ]);
+
+      var option1 = {
+        title: 'Relevant vs Spam Comments'
+      };
+      var option2 = {
+        title: 'Appreciation vs Grievance Comments'
+      };
+
+      var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
+      var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+      chart1.draw(data1, option1);
+      chart2.draw(data2, option2);
+    }
+  </script>
 </head>
+
 <body style="background-color: rgba(191, 231, 255, 0.941);">
-    <h1 style="text-align: center; margin-top: 8%;">Which type of comments you want to see?</h1>
-    <div class="container">
+  <h1 style="text-align: center; margin-top: 6%;">Which type of comments you want to see?</h1>
+  <div class="container">
     <form method="POST" action="/all" class="inner_container">
-        <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="All">All</button>
-        <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="Relevant">Relevant</button>
-        <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="Spam">Spam</button>
-        <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="Appreciation">Appreciation</button>
-        <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="Grievances">Grievances</button>
+      <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="All">All</button>
+      <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
+        value="Relevant">Relevant</button>
+      <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
+        value="Spam">Spam</button>
+      <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
+        value="Appreciation">Appreciation</button>
+      <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
+        value="Grievance">Grievance</button>
     </form>
-    </div>
+  </div>
+  <h1 style="text-align: center; margin-top: 4%; font-weight: 400; font-size:x-large;">Total number of comments = {{cnt_array[0]}}</h1>
+  <div class="outer-container">
+    <div id="piechart1" class="visual"></div>
+    <div id="piechart2" class="visual"></div>
+  </div>
 </body>
+
 </html>

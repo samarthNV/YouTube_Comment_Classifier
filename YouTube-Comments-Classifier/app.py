@@ -19,7 +19,8 @@ with open('vectorizer.pkl', 'rb') as vectorizer_file:
 yt_link = ""
 
 def get_youtube_comments(video_id):
-    youtube = build('youtube', 'v3', developerKey='AIzaSyDKeOTZPWuLpSIHSkPPbtsxqEDF73-Nc8U')
+    youtube = build('youtube', 'v3',
+                    developerKey='AIzaSyDKeOTZPWuLpSIHSkPPbtsxqEDF73-Nc8U')
     comments = []
     counter = 10
 
@@ -50,105 +51,86 @@ def get_youtube_comments(video_id):
     return comments
 
 
+def classify_count_comments(comments):
+
+    global all_comments, relevant_comments, spam_comments, good_comments, bad_comments
+
+    all_comments = np.array(comments)
+    cnt1 = len(all_comments)
+
+    # Array for relevant and spam comments
+    label_col = []
+    cp = []
+    for c in all_comments:
+        cp.append([c])
+        comment_features = [c]
+        features = np.array(comment_features)
+        data_tfidf = tfidf_vectorizer.transform(features)
+        prediction = spam_detection_model.predict(data_tfidf)
+        label_col.append(prediction)
+
+    label_array = np.array(label_col)
+    relevant_comments = np.array(cp)[label_array == 0]
+    spam_comments = np.array(cp)[label_array == 1]
+    cnt2 = len(relevant_comments)
+    cnt3 = len(spam_comments)
+
+    # Array for comments of appreciation and griviences
+    label_col = []
+    cp = []
+    for c in all_comments:
+        cp.append(c)
+        prediction_dict = sentiment_analysis_model.polarity_scores(c)
+        prediction = prediction_dict["compound"]
+        label_col.append(prediction)
+
+    label_array = np.array(label_col)
+    good_comments = np.array(cp)[label_array >= 0.5]
+    bad_comments = np.array(cp)[label_array <= -0.5]
+    cnt4 = len(good_comments)
+    cnt5 = len(bad_comments)
+    cnt_array = [cnt1, cnt2, cnt3, cnt4, cnt5]
+
+    return cnt_array
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/process_link', methods=['POST'])
 def process_link():
     youtube_link = request.form.get('youtube_link')
     global yt_link
     yt_link = youtube_link
+    comments = get_youtube_comments(video_id=yt_link)
+    cnt_array = []
+    cnt_array = classify_count_comments(comments)
 
-    return render_template('class.html')
+    return render_template('class.html', cnt_array=cnt_array)
+
 
 @app.route('/all', methods=['POST'])
 def all():
     button_type = request.form['button_name']
-    if(button_type=='All'):
-        comments = get_youtube_comments(video_id=yt_link)
+    global all_comments, relevant_comments, spam_comments, good_comments, bad_comments
+    if (button_type == 'All'):
+        required_comments = all_comments
 
-        label_col = []
-        for c in comments:
-            comment_features = [c]
-            features = np.array(comment_features)
-            data_tfidf = tfidf_vectorizer.transform(features)
-            prediction = spam_detection_model.predict(data_tfidf)
-            label_col.append(prediction)
+    elif (button_type == 'Relevant'):
+        required_comments = relevant_comments
 
-        return render_template('comments-page.html', comments=comments, type="All")
-
-    elif(button_type=='Relevant'):
-        comments = get_youtube_comments(video_id=yt_link)
-        comments = np.array(comments)
-        label_col = []
-        cp = []
-        for c in comments:
-            cp.append([c])
-            comment_features = [c]
-            features = np.array(comment_features)
-            data_tfidf = tfidf_vectorizer.transform(features)
-            prediction = spam_detection_model.predict(data_tfidf)
-            label_col.append(prediction)
-
-        label_array = np.array(label_col)
-        cp = np.array(cp)
-        relevant_comments = cp[label_array == 0]
-
-        return render_template('comments-page.html', comments=relevant_comments, type="Relevant")
-    
     elif (button_type == 'Spam'):
-        comments = get_youtube_comments(video_id=yt_link)
-        comments = np.array(comments)
-        label_col = []
-        cp = []
-        for c in comments:
-            cp.append([c])
-            comment_features = [c]
-            features = np.array(comment_features)
-            data_tfidf = tfidf_vectorizer.transform(features)
-            prediction = spam_detection_model.predict(data_tfidf)
-            label_col.append(prediction)
+        required_comments = spam_comments
 
-        label_array = np.array(label_col)
-        cp = np.array(cp)
-        spam_comments = cp[label_array == 1]
-
-        return render_template('comments-page.html', comments=spam_comments, type="Spam")
- 
     elif (button_type == 'Appreciation'):
-        comments = get_youtube_comments(video_id=yt_link)
-        comments = np.array(comments)
-        label_col = []
-        cp = []
-        for c in comments:
-            cp.append(c)
-            prediction_dict = sentiment_analysis_model.polarity_scores(c);
-            prediction = prediction_dict["compound"]
-            label_col.append(prediction)
+        required_comments = good_comments
 
-        label_array = np.array(label_col)
-        cp = np.array(cp)
-        good_comments = cp[label_array >= 0.5]
+    elif (button_type == 'Grievance'):
+        required_comments = bad_comments
 
-        return render_template('comments-page.html', comments=good_comments, type="Appreciation")
-    
-    elif (button_type == 'Grievances'):
-        comments = get_youtube_comments(video_id=yt_link)
-        comments = np.array(comments)
-        label_col = []
-        cp = []
-        for c in comments:
-            cp.append(c)
-            prediction_dict = sentiment_analysis_model.polarity_scores(c);
-            prediction = prediction_dict["compound"]
-            label_col.append(prediction)
-
-        label_array = np.array(label_col)
-        cp = np.array(cp)
-        bad_comments = cp[label_array <= -0.5]
-
-        return render_template('comments-page.html', comments=bad_comments, type="Grievance")
+    return render_template('comments-page.html', comments=required_comments, type=button_type)
 
 
 if __name__ == '__main__':
