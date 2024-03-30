@@ -47,7 +47,8 @@ class User(db.Model, UserMixin):
 class RegisterForm(FlaskForm):
     username = StringField(validators=[InputRequired(), Length(min=4, max=20)])
 
-    password = PasswordField(validators=[InputRequired(), Length(min=8, max=20)])
+    password = PasswordField(
+        validators=[InputRequired(), Length(min=8, max=20)])
 
     submit = SubmitField('Register')
 
@@ -56,13 +57,14 @@ class RegisterForm(FlaskForm):
             username=username.data).first()
         if existing_user_username:
             raise ValidationError(
-                'That username already exists. Please choose a different one.')
+                'Username already exists.')
 
 
 class LoginForm(FlaskForm):
     username = StringField(validators=[InputRequired(), Length(min=4, max=20)])
 
-    password = PasswordField(validators=[InputRequired(), Length(min=8, max=20)])
+    password = PasswordField(
+        validators=[InputRequired(), Length(min=8, max=20)])
 
     submit = SubmitField('Login')
 
@@ -70,13 +72,13 @@ class LoginForm(FlaskForm):
 with app.app_context():
     db.create_all()
 
-with open('spam_detection_model.pkl', 'rb') as model_file:
+with open('models/spam_detection_model.pkl', 'rb') as model_file:
     spam_detection_model = pickle.load(model_file)
 
-with open('sentiment_analysis_model.pkl', 'rb') as model_file:
+with open('models/sentiment_analysis_model.pkl', 'rb') as model_file:
     sentiment_analysis_model = pickle.load(model_file)
 
-with open('vectorizer.pkl', 'rb') as vectorizer_file:
+with open('models/vectorizer.pkl', 'rb') as vectorizer_file:
     tfidf_vectorizer = pickle.load(vectorizer_file)
 
 # Function to extract youtube comments from ID

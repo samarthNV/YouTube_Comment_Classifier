@@ -58,26 +58,25 @@
       <a href="{{url_for('logout')}}"><button class="nav-btn">Logout</button></a>
     </div>
   </nav>
-  <h1 style="text-align: center; margin-top: 3%;">Which type of comments you want to see?</h1>
-  <!-- <div class="container"> -->
-    <form method="POST" action="/all" class="inner_container">
-      <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="All">All</button>
-      <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
-        value="Relevant">Relevant</button>
-      <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
-        value="Spam">Spam</button>
-      <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
-        value="Appreciation">Appreciation</button>
-      <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
-        value="Grievance">Grievance</button>
-    </form>
-  <!-- </div> -->
-  <h1 style="text-align: center; margin-top: 2%; font-weight: 400; font-size:x-large;">Total number of comments =
-    {{cnt_array[0]}}</h1>
+
+  <div class="box">
+    <h1>Total number of comments = {{cnt_array[0]}}</h1>
+  </div>
   <div class="outer-container">
     <div id="piechart1" class="visual"></div>
     <div id="piechart2" class="visual"></div>
   </div>
+  <h1 style="text-align: center; margin-top: 3%;">Which type of comments you want to see?</h1>
+  <form method="POST" action="/all" class="inner_container">
+    <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="All">All</button>
+    <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
+      value="Relevant">Relevant</button>
+    <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;" value="Spam">Spam</button>
+    <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
+      value="Appreciation">Appreciation</button>
+    <button type="submit" name="button_name" class="big-button" style="border-radius: 10px;"
+      value="Grievance">Grievance</button>
+  </form>
 </body>
 
 </html>

@@ -29,6 +29,8 @@
 
 YouTube comment classifier project is aimed to analyze and categorize comments on YouTube videos, using a combination of sentiment analysis and a Multinomial Naive Bayes Classifier. This project was developed using Flask, a Python web framework, and integrated with the Google YouTube API to fetch comments from YouTube videos. The primary objective of this project was to efficiently filter and categorize comments into five main categories: spam, relevant, appreciation, grievance and all comments.
 
+Integrated with user authentication, the user has to first register with his/her username and password, and then login to the application. While on the application, the user can logout anytime. Visualisation of the comparison between tyoe of comments - (relevant vs spam) and (appreciation vs grievance) as piecharts is provided on the dashboard in order to make the application more insightful and engaging.
+
 The first component of the project involved sentiment analysis, which was used to determine the emotional tone of the comments. This analysis helped identify whether a comment was appreciative or critical, providing valuable insights into the overall sentiment of the viewers. Sentiment analysis used natural language processing techniques to assign a sentiment score to each comment.
 
 The second part of the project utilized a Multinomial Naive Bayes Classifier to distinguish between relevant and spam comments. This classifier was designed to filter out comments that were unrelated or irrelevant to the video's content, ensuring that only meaningful and contextually appropriate comments were displayed.
@@ -45,6 +47,8 @@ The technologies and tools used are:
 - HTML
 - CSS
 - Python
+- Google Charts
+- Postgres
 - Google Colab
 
 
@@ -83,7 +87,7 @@ Follow the below steps to set up the project locally:
 
 <br>
 
-- Relevant and Spam Comment Detection
+- Relevant and Spam Comments Detection
 - Appreciation and Resentful Comments Detection
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
