@@ -240,8 +240,4 @@ def all():
 
     return render_template('comments-page.html', comments=required_comments, type=button_type)
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
 # For trial, use the ID of Eminem song video : 2BeksVabsCk
