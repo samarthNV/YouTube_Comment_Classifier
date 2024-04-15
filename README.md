@@ -14,7 +14,7 @@
     <br>
     <a href="https://github.com/samarthNV/YouTube_Comment_Classifier"><strong>Explore the docs »</strong></a>
     <br />
-    <a href="https://github.com/samarthNV/YouTube_Comment_Classifier">View Demo</a>
+    <a href="https://drive.google.com/file/d/1Jdsm__ofXirzdk_5m5DDQ2T1fb1vaTTl/view">View Demo</a>
     ·
     <a href="https://github.com/samarthNV/YouTube_Comment_Classifier/issues">Report Bug</a>
     ·
@@ -24,6 +24,8 @@
 
 <!-- ABOUT THE PROJECT -->
 <br>
+
+https://github.com/samarthNV/YouTube_Comment_Classifier/assets/105542518/f9decbe2-af0e-4393-9f29-d96680460298
 
 ## ♾️ About The Project
 
