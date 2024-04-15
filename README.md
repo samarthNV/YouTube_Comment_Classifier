@@ -78,7 +78,7 @@ Follow the below steps to set up the project locally:
 3. Run app.py file:
 
    ```sh
-   python app.py
+   python wsgi.py
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
