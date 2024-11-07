@@ -53,7 +53,6 @@ The technologies and tools used are:
 - Postgres
 - Google Colab
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -77,7 +76,22 @@ Follow the below steps to set up the project locally:
    cd YouTube-Comments-Classifier
    ```
 
-3. Run app.py file:
+3. Install all requirements:
+
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+4. Setup .env file:
+
+   ```python
+   DEVELOPER_KEY="ENTER_DEVELOPER_KEY_HERE"
+   DATABASE_URL="sqlite:///your_database.db"
+   ```
+
+   You need to create your developer key from your GCP console.
+
+5. Run wsgi.py file:
 
    ```sh
    python wsgi.py
